@@ -50,7 +50,7 @@ const handleSubmit = () => {
         </div>
         <div className="app__footer-card">
           <img src={images.mobile} alt="phone" />
-          <a href="tel:+212706452165" style={{ color: "black" }} aria-label={`Call me`} className="p-text">+212706452165</a>
+          <a href="tel:+212600000000" style={{ color: "black" }} aria-label={`Call me`} className="p-text">+212600000000</a>
         </div>
       </div>
       {!isFormSubmitted ? (
