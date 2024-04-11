@@ -10,30 +10,34 @@ const Footer = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { username, email, message } = formData;
+  const { name, email, message } = formData;
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    setLoading(true);
+const handleSubmit = () => {
+  setLoading(true);
 
-    const contact = {
-      _type: 'contact',
-      name: formData.username,
-      email: formData.email,
-      message: formData.message,
-    };
-
-    client.create(contact)
-      .then(() => {
-        setLoading(false);
-        setIsFormSubmitted(true);
-      })
-      .catch((err) => console.log(err));
+  const contact = {
+    _type: 'contact',
+    name: formData.name,
+    email: formData.email,
+    message: formData.message,
   };
+
+  client.create(contact)
+    .then(() => {
+      setLoading(false);
+      setIsFormSubmitted(true);
+    })
+    .catch((err) => {
+      console.error('Error submitting the form:', err.message);
+      setLoading(false);
+      // Present an error message to the user or handle insufficient permissions
+    });
+};
 
   return (
     <>
@@ -52,7 +56,7 @@ const Footer = () => {
       {!isFormSubmitted ? (
         <div className="app__footer-form app__flex">
           <div className="app__flex">
-            <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
+            <input className="p-text" type="text" placeholder="Your Name" name="name" value={name} onChange={handleChangeInput} />
           </div>
           <div className="app__flex">
             <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
