@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.scss";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 import { Header, Footer, About, Work, Skills, Testimonial } from "./container";
 import { Navbar } from "./components";
@@ -15,6 +16,7 @@ function App() {
       <Testimonial />
       <Footer />
       <SocialMediaFixed/>
+      <SpeedInsights/>
     </div>
   );
 }

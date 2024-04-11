@@ -49,6 +49,7 @@ const Work = () => {
           "React Native",
           "Javascript",
           "Php",
+          "Css",
           "All",
         ].map((item, index) => (
           <div

@@ -6,7 +6,7 @@ export const client = createClient({
   dataset: 'production', // Or your desired dataset name
   apiVersion: '2023-05-03', // Use the latest stable API version
   useCdn: true, // Enable CDN for faster performance
-  token: process.env.REACT_APP_SANITY_API_TOKEN, // Your Sanity project's token
+  token: process.env.REACT_APP_SANITY_API_TOKEN2, // Your Sanity project's token
 });
 
 const builder = imageUrlBuilder(client);
