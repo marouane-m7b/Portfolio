@@ -14,7 +14,7 @@
 .app__container {
   width: 100%;
   min-height: 100vh;
-
+  position: relative;
   display: flex;
   flex-direction: row;
 }
@@ -94,6 +94,62 @@
 
   @media screen and (max-width: 450px) {
     font-size: 0.9rem;
+  }
+}
+
+.app__social-fixed {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+
+  padding: 1rem;
+
+  div {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--white-color);
+    margin: 0.25rem 0;
+    border: 1px solid var(--lightGray-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    svg {
+      width: 15px;
+      height: 15px;
+      color: var(--gray-color);
+    }
+
+    &:hover {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+
+      svg {
+        color: var(--white-color);
+      }
+    }
+
+    @media screen and (min-width: 2000px) {
+      width: 70px;
+      height: 70px;
+
+      margin: 0.5rem 0;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 }
 
@@ -185,4 +241,12 @@
   .copyright {
     padding: 2rem;
   }
+}
+
+svg.wave {
+  position: absolute;
+  width: 100%;
+  bottom: -2px;
+  right: 0;
+  z-index: 3;
 }

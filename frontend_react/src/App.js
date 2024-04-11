@@ -3,6 +3,7 @@ import "./App.scss";
 
 import { Header, Footer, About, Work, Skills, Testimonial } from "./container";
 import { Navbar } from "./components";
+import {SocialMediaFixed} from "./components";
 function App() {
   return (
     <div className="app">
@@ -13,6 +14,7 @@ function App() {
       <Skills />
       <Testimonial />
       <Footer />
+      <SocialMediaFixed/>
     </div>
   );
 }
