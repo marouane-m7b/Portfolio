@@ -8,7 +8,7 @@
   backdrop-filter: blur(4px);
   border: 1px solid rgba($color: #ffff, $alpha: 0.18);
   position: fixed;
-  z-index: 2;
+  z-index: 9;
 }
 
 .app__navbar-logo {
@@ -97,7 +97,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    z-index: 5;
+    z-index: 10;
 
     padding: 1rem;
 
