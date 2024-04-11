@@ -30,12 +30,12 @@ export const worksType = defineType({
       title: 'Skills',
       type: 'array',
       of: [
-        {
-          type: 'string',
+        defineField({
           name: 'skill',
           title: 'Skill',
-        }
-      ]
+          type: 'string',
+        }),
+      ],
     }),
     defineField({
       name: 'imgUrl',
@@ -44,18 +44,6 @@ export const worksType = defineType({
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [
-        defineField({
-          name: 'tag',
-          title: 'Tag',
-          type: 'string',
-        }),
-      ],
     }),
   ],
 })
