@@ -43,18 +43,24 @@ const Work = () => {
       </h2>
 
       <div className="app__work-filter">
-        {["React JS", "Laravel", "React Native", "Javascript", "Php", "All"].map(
-          (item, index) => (
-            <div
-              key={index}
-              onClick={() => handleWorkFilter(item)}
-              className={`app__work-filter-item app__flex p-text ${activeFilter === item ? "item-active" : ""
-                }`}
-            >
-              {item}
-            </div>
-          )
-        )}
+        {[
+          "React JS",
+          "Laravel",
+          "React Native",
+          "Javascript",
+          "Php",
+          "All",
+        ].map((item, index) => (
+          <div
+            key={index}
+            onClick={() => handleWorkFilter(item)}
+            className={`app__work-filter-item app__flex p-text ${
+              activeFilter === item ? "item-active" : ""
+            }`}
+          >
+            {item}
+          </div>
+        ))}
       </div>
 
       <motion.div
@@ -66,13 +72,16 @@ const Work = () => {
           <div className="app__work-item app__flex" key={index}>
             <div className="app__work-img app__flex">
               <img src={urlFor(work.imgUrl)} alt={work.name} />
-
               <motion.div
-                whileHover={{ opacity: [0, 1] }}
+                whileHover={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
                 transition={{
-                  duration: 0.25,
-                  ease: "easeInOut",
-                  sskillgerChildren: 0.5,
+                  opacity: { duration: 0.25, ease: "easeInOut" },
+                  default: {
+                    duration: 0.25,
+                    ease: "easeInOut",
+                    sskillgerChildren: 0.5,
+                  },
                 }}
                 className="app__work-hover app__flex"
               >
@@ -113,7 +122,7 @@ const Work = () => {
               <h4 className="bold-text">{work.title}</h4>
               <div className="app__flex-skills">
                 {work.skills.map((skill, index) => (
-                  <div key={index} className='app__work-skill'>
+                  <div key={index} className="app__work-skill">
                     {skill}
                   </div>
                 ))}
