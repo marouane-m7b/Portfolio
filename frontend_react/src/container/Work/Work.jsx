@@ -44,7 +44,7 @@ const Work = () => {
 
       <div className="app__work-filter">
         {[
-          "React JS",
+          "React Js",
           "Laravel",
           "React Native",
           "Javascript",
@@ -101,21 +101,25 @@ const Work = () => {
                     <AiFillEye />
                   </motion.div>
                 </a>
-                <a
-                  href={work.codeLink}
-                  aria-label={`${work.title}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.9] }}
-                    transition={{ duration: 0.25 }}
-                    className="app__flex"
+                {work.codeLink !== "#" ? (
+                  <a
+                    href={work.codeLink}
+                    aria-label={`${work.title}`}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    <AiFillGithub />
-                  </motion.div>
-                </a>
+                    <motion.div
+                      whileInView={{ scale: [0, 1] }}
+                      whileHover={{ scale: [1, 0.9] }}
+                      transition={{ duration: 0.25 }}
+                      className="app__flex"
+                    >
+                      <AiFillGithub />
+                    </motion.div>
+                  </a>
+                ) : (
+                  <></>
+                )}
               </motion.div>
             </div>
 
