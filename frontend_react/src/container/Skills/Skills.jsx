@@ -55,6 +55,9 @@ const Skills = () => {
         </motion.div>
         <ReactTooltip
           anchorSelect=".work-name"
+          place="top"
+          effect="solid"
+          delayHide={200}
           className="skills-tooltip"
           id={work.name}
           content={`${work.desc}`}
