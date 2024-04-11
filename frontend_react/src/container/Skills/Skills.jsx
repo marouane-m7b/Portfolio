@@ -23,6 +23,48 @@ const Skills = () => {
         });
     }, []);
 
+    console.log(experiences);
+
+    const SanityContent = ({ workRef }) => {
+        const [work, setWork] = useState(null);
+
+        useEffect(() => {
+            const query = `*[_id == "${workRef}"]{
+                name,
+                company,
+                desc
+            }`;
+            client.fetch(query).then((data) => {
+                if (data) setWork(data[0]);
+            });
+        }, [workRef]);
+
+        if (!work) return null;
+
+        return (
+            <>
+                <motion.div
+                    whileInView={{ opacity: [0, 1] }}
+                    transition={{ duration: 0.5 }}
+                    className="app__skills-exp-work"
+                    data-tip
+                    data-for={work.name}
+                >
+                    <h4 className="bold-text">{work.name}</h4>
+                    <p className="p-text">{work.company}</p>
+                </motion.div>
+                <ReactTooltip
+                    id={work.name}
+                    effect="solid"
+                    arrowColor="#fff"
+                    className="skills-tooltip"
+                >
+                    {work.desc}
+                </ReactTooltip>
+            </>
+        );
+    };
+
     return (
         <>
             <h2 className="head-text">Skills & Experiences</h2>
@@ -56,28 +98,8 @@ const Skills = () => {
                                 <p className="bold-text">{experience.year}</p>
                             </div>
                             <motion.div className="app__skills-exp-works">
-                                {experience.works.map((work) => (
-                                    <>
-                                        <motion.div
-                                            whileInView={{ opacity: [0, 1] }}
-                                            transition={{ duration: 0.5 }}
-                                            className="app__skills-exp-work"
-                                            data-tip
-                                            data-for={work.name}
-                                            key={work.name}
-                                        >
-                                            <h4 className="bold-text">{work.name}</h4>
-                                            <p className="p-text">{work.company}</p>
-                                        </motion.div>
-                                        <ReactTooltip
-                                            id={work.name}
-                                            effect="solid"
-                                            arrowColor="#fff"
-                                            className="skills-tooltip"
-                                        >
-                                            {work.desc}
-                                        </ReactTooltip>
-                                    </>
+                                {experience.works.map((workRef) => (
+                                    <SanityContent workRef={workRef._ref} key={workRef._key} />
                                 ))}
                             </motion.div>
                         </motion.div>
