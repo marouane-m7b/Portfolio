@@ -23,8 +23,6 @@ const Skills = () => {
     });
   }, []);
 
-  console.log(experiences);
-
   const SanityContent = ({ workRef }) => {
     const [work, setWork] = useState(null);
 
