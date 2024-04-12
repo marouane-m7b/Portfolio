@@ -16,6 +16,12 @@ export const skillsType = defineType({
       type: 'number'
     }),
     defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }]
+    }),
+    defineField({
       name: 'bgColor',
       title: 'BgColor',
       type: 'string'
