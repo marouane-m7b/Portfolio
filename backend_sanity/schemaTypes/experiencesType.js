@@ -11,15 +11,19 @@ export const experiencesType = defineType({
       title: 'Year'
     }),
     defineField({
-      name: 'works',
-      type: 'array',
-      title: 'Works',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'workExperience' }]
-        }
-      ]
+      name: 'title',
+      type: 'string',
+      title: 'Title'
+    }),
+    defineField({
+      name: 'subtitle',
+      type: 'string',
+      title: 'Subtitle'
+    }),
+    defineField({
+      name: 'desc',
+      type: 'string',
+      title: 'Desc'
     })
   ]
 });

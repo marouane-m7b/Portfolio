@@ -4,101 +4,60 @@ import { client } from "../../client";
 import { AppWrap, MotionWrap } from "../../wrapper";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "./Experience.scss";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import { MdOutlineWork } from "react-icons/md";
+import { PiStudentFill } from "react-icons/pi";
+import { FaStar } from "react-icons/fa";
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
-  const [education, setEducation] = useState([]);
 
   useEffect(() => {
     const experienceQuery = '*[_type == "experiences"]';
-    const educationQuery = '*[_type == "education"]';
 
     client.fetch(experienceQuery).then((data) => {
       setExperiences(data);
-    });
-
-    client.fetch(educationQuery).then((data) => {
-      setEducation(data);
     });
   }, []);
 
   return (
     <>
-      <h2 className="head-text">Experience & Education</h2>
-
-      <div className="app__experience-container">
-        <div className="app__experience-list">
-          {experiences.map((experience) => (
-            <motion.div className="app__experience-item" key={experience.year}>
-              <div className="app__experience-year">
-                <p className="bold-text">{experience.year}</p>
-              </div>
-              <motion.div className="app__experience-works">
-                {experience.works.map((workRef) => (
-                  <SanityContent workRef={workRef._ref} key={workRef._key} />
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
-        <div className="app__education-list">
-          <h3>Education</h3>
-          {education.map((edu, index) => (
-            <div className="education-item" key={index}>
-              <p>{edu.year}</p>
-              <p>{edu.school}</p>
-              <p>{edu.desc}</p>
-            </div>
-          ))}
-        </div>
+      <h2 className="head-text">
+        Experience <span>&</span> Education
+      </h2>
+      <div style={{ textAlign: "center", width: "80vw", marginTop: "2rem" }}>
+        <VerticalTimeline>
+          <VerticalTimelineElement
+            className="vertical-timeline-element--education"
+            date="2010 - 2011"
+            iconStyle={{ background: "var(--gray-color)", color: "#fff" }}
+            icon={<MdOutlineWork />}
+          >
+            <h3 className="vertical-timeline-element-title">Art Director</h3>
+            <h4 className="vertical-timeline-element-subtitle">
+              San Francisco, CA
+            </h4>
+            <p>
+              Creative Direction, User Experience, Visual Design, SEO, Online
+              Marketing
+            </p>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            iconStyle={{ background: "rgb(16, 204, 82)", color: "#fff" }}
+            icon={<FaStar />}
+          />
+        </VerticalTimeline>
       </div>
     </>
   );
 };
 
-const SanityContent = ({ workRef }) => {
-  const [work, setWork] = useState(null);
-
-  useEffect(() => {
-    const query = `*[_id == "${workRef}"]{
-                name,
-                company,
-                desc
-            }`;
-    client.fetch(query).then((data) => {
-      if (data) setWork(data[0]);
-    });
-  }, [workRef]);
-
-  if (!work) return null;
-
-  return (
-    <>
-      <motion.div
-        whileInView={{ opacity: [0, 1] }}
-        transition={{ duration: 0.5 }}
-        className="app__experience-work"
-        data-tip
-        data-for={work.name}
-      >
-        <h4 className="bold-text work-name">{work.name}</h4>
-        <p className="p-text work-company">{work.company}</p>
-      </motion.div>
-      <ReactTooltip
-        anchorSelect=".work-name"
-        place="top"
-        effect="solid"
-        delayHide={200}
-        className="experience-tooltip"
-        id={work.name}
-        content={`${work.desc}`}
-      ></ReactTooltip>
-    </>
-  );
-};
-
 export default AppWrap(
-    MotionWrap(Experience, "app__skills-exp"),
-    "experience",
-    "app__whitebg"
-)
+  MotionWrap(Experience, "app__skills-exp"),
+  "experience",
+  "app__primarybg"
+);
