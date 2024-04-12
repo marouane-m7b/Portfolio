@@ -1,77 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Tooltip as ReactTooltip } from "react-tooltip";
 import {
+  CircularProgressbar,
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { AppWrap, MotionWrap } from "../../wrapper";
-import { urlFor, client } from "../../client";
+import { client, urlFor } from "../../client";
 import "./Skills.scss";
 import ProgressProvider from "./ProgressProvider";
+import { AppWrap, MotionWrap } from "../../wrapper";
 
 const Skills = () => {
-  const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
   const [filterSkills, setFilterSkills] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("Front");
+  const [activeFilter, setActiveFilter] = useState("Languages");
   const [animateCard, setAnimateCard] = useState({ x: 0, opacity: 1 });
 
   useEffect(() => {
-    const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
-
-    client.fetch(query).then((data) => {
-      setExperiences(data);
-    });
-
     client.fetch(skillsQuery).then((data) => {
       setSkills(data);
-      setFilterSkills(data);
+      setFilterSkills(
+        data.filter((skill) => skill.tags.includes(activeFilter))
+      );
     });
   }, []);
-
-  const SanityContent = ({ workRef }) => {
-    const [work, setWork] = useState(null);
-
-    useEffect(() => {
-      const query = `*[_id == "${workRef}"]{
-                name,
-                company,
-                desc
-            }`;
-      client.fetch(query).then((data) => {
-        if (data) setWork(data[0]);
-      });
-    }, [workRef]);
-
-    if (!work) return null;
-
-    return (
-      <>
-        <motion.div
-          whileInView={{ opacity: [0, 1] }}
-          transition={{ duration: 0.5 }}
-          className="app__skills-exp-work"
-          data-tip
-          data-for={work.name}
-        >
-          <h4 className="bold-text work-name">{work.name}</h4>
-          <p className="p-text work-company">{work.company}</p>
-        </motion.div>
-        <ReactTooltip
-          anchorSelect=".work-name"
-          place="top"
-          effect="solid"
-          delayHide={200}
-          className="skills-tooltip"
-          id={work.name}
-          content={`${work.desc}`}
-        ></ReactTooltip>
-      </>
-    );
-  };
 
   const handleWorkFilter = (item) => {
     setActiveFilter(item);
@@ -90,16 +44,17 @@ const Skills = () => {
 
   return (
     <>
-      <h2 className="head-text">Skills & Experiences</h2>
+      <h2 className="head-text">Skills</h2>
 
       <div className="app__skills-container">
         <motion.div className="app__skills-list">
           <div className="app__work-filter app__work-filter-skills">
             {[
+              { show: "Languages", send: "Languages" },
               { show: "Frontend", send: "Front" },
               { show: "Backend", send: "Back" },
               { show: "Mobile", send: "Mobile" },
-              { show: "Other Tools", send: "Tools" }
+              { show: "Other Tools", send: "Tools" },
             ].map((item, index) => (
               <div
                 key={index}
@@ -142,11 +97,15 @@ const Skills = () => {
                           })}
                           strokeWidth={3}
                         >
-                          <img
-                            src={urlFor(skill.icon)}
-                            alt={skill.name}
-                            style={{ width: "50%", height: "50%" }}
-                          />
+                          {skill.icon ? (
+                            <img
+                              src={urlFor(skill.icon)}
+                              alt={skill.name}
+                              style={{ width: "50%", height: "50%" }}
+                            />
+                          ) : (
+                            <p>{skill.name}</p>
+                          )}
                         </CircularProgressbarWithChildren>
                       )}
                     </ProgressProvider>
@@ -156,20 +115,6 @@ const Skills = () => {
               ))}
           </motion.div>
         </motion.div>
-        <div className="app__skills-exp">
-          {experiences.map((experience) => (
-            <motion.div className="app__skills-exp-item" key={experience.year}>
-              <div className="app__skills-exp-year">
-                <p className="bold-text">{experience.year}</p>
-              </div>
-              <motion.div className="app__skills-exp-works">
-                {experience.works.map((workRef) => (
-                  <SanityContent workRef={workRef._ref} key={workRef._key} />
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </>
   );
