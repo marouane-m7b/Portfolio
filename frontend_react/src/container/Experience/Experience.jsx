@@ -20,7 +20,6 @@ const Experience = () => {
   
     client.fetch(experienceQuery).then((data) => {
       setExperiences(data);
-      console.log(data); // Now the data will be sorted by _createdAt (latest first)
     });
   }, []);  
 
@@ -34,12 +33,12 @@ const Experience = () => {
           {experiences.map((experience, index) => (
             <VerticalTimelineElement
               key={index}
-              contentStyle={index === 0 ? { background: "rgb(33, 150, 243)", color: "#fff" } : null}
-              contentArrowStyle={index === 0 ?{ borderRight: "7px solid  rgb(33, 150, 243)" }: null}
+              contentStyle={index === 0 ? { background: "var( --secondary-color)", color: "#fff" } : null}
+              contentArrowStyle={index === 0 ?{ borderRight: "7px solid  var(--secondary-color)" }: null}
               className={experience.type === "education" ? "vertical-timeline-element--education" : "vertical-timeline-element--work"}
               date={experience.year}
               dateClassName="text-black"
-              iconStyle={experience.type === "education" ? { background: "rgb(233, 30, 99)", color: "#fff" } : { background: "rgb(33, 150, 243)", color: "#fff" }}
+              iconStyle={experience.type === "education" ? { background: "rgb(233, 30, 99)", color: "#fff" } : { background: "var(--secondary-color)", color: "#fff" }}
               icon={experience.type === "education" ? <PiStudentFill /> : <MdOutlineWork />}
             >
               <h3 className="vertical-timeline-element-title">
