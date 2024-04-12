@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { client } from "../../client";
 import { AppWrap, MotionWrap } from "../../wrapper";
-import { Tooltip as ReactTooltip } from "react-tooltip";
 import "./Experience.scss";
 import {
   VerticalTimeline,
@@ -17,35 +16,38 @@ const Experience = () => {
   const [experiences, setExperiences] = useState([]);
 
   useEffect(() => {
-    const experienceQuery = '*[_type == "experiences"]';
-
+    const experienceQuery = `*[_type == "experiences"] | order(_createdAt desc)`;
+  
     client.fetch(experienceQuery).then((data) => {
       setExperiences(data);
+      console.log(data); // Now the data will be sorted by _createdAt (latest first)
     });
-  }, []);
+  }, []);  
 
   return (
     <>
       <h2 className="head-text">
         Experience <span>&</span> Education
       </h2>
-      <div style={{ textAlign: "center", width: "80vw", marginTop: "2rem" }}>
+      <div style={{ width: "80vw", marginTop: "2rem" }}>
         <VerticalTimeline>
-          <VerticalTimelineElement
-            className="vertical-timeline-element--education"
-            date="2010 - 2011"
-            iconStyle={{ background: "var(--gray-color)", color: "#fff" }}
-            icon={<MdOutlineWork />}
-          >
-            <h3 className="vertical-timeline-element-title">Art Director</h3>
-            <h4 className="vertical-timeline-element-subtitle">
-              San Francisco, CA
-            </h4>
-            <p>
-              Creative Direction, User Experience, Visual Design, SEO, Online
-              Marketing
-            </p>
-          </VerticalTimelineElement>
+          {experiences.map((experience, index) => (
+            <VerticalTimelineElement
+              key={index}
+              className={experience.type === "education" ? "vertical-timeline-element--education" : "vertical-timeline-element--work"}
+              date={experience.year}
+              iconStyle={experience.type === "education" ? { background: "rgb(233, 30, 99)", color: "#fff" } : { background: "rgb(33, 150, 243)", color: "#fff" }}
+              icon={experience.type === "education" ? <PiStudentFill /> : <MdOutlineWork />}
+            >
+              <h3 className="vertical-timeline-element-title">
+                {experience.title}
+              </h3>
+              <h4 className="vertical-timeline-element-subtitle">
+                {experience.subtitle}
+              </h4>
+              <p id="description">{experience.desc}</p>
+            </VerticalTimelineElement>
+          ))}
           <VerticalTimelineElement
             iconStyle={{ background: "rgb(16, 204, 82)", color: "#fff" }}
             icon={<FaStar />}

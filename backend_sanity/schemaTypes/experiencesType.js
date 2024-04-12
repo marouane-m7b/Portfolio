@@ -24,6 +24,11 @@ export const experiencesType = defineType({
       name: 'desc',
       type: 'string',
       title: 'Desc'
+    }),
+    defineField({
+      name: 'type',
+      type: 'string',
+      title: 'Type'
     })
   ]
 });
