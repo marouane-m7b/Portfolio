@@ -28,7 +28,7 @@ const Experience = () => {
       <h2 className="head-text">
         Experience <span>&</span> Education
       </h2>
-      <div style={{ width: "80vw", marginTop: "2rem" }}>
+      <div className="app__experience-container">
         <VerticalTimeline>
           {experiences.map((experience, index) => (
             <VerticalTimelineElement

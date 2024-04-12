@@ -234,9 +234,21 @@
   }
 }
 
+.app__placeholder {
+  padding: 2rem;
+  background: transparent;
+}
+
+@media screen and (max-width: 667px) {
+  .app__placeholder {
+    padding: 1rem;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .app__navigation,
-  .app__social {
+  .app__social,
+  .app__placeholder {
     display: none;
   }
 
