@@ -124,7 +124,7 @@ const Work = () => {
             </div>
 
             <div className="app__work-content app__flex">
-              <h4 className="bold-text">{work.title}</h4>
+              <div className="h4 bold-text">{work.title}</div>
               <div className="app__flex-skills">
                 {work.skills.map((skill, index) => (
                   <div key={index} className="app__work-skill">
