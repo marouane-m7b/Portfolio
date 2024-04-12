@@ -157,14 +157,14 @@
   .app__work-skill {
     padding: 0.1rem 0.4rem;
     border-radius: 0.3rem;
-    background-color: #fb8eff;
+    background-color: rgb(127, 214, 255);
     color: #fff;
     font-weight: 800;
     cursor: pointer;
     transition: all 0.3s ease;
     margin: 0.3rem;
     font-size: 11px;
-    outline: dotted 2px #fb8eff;
+    outline: dotted 2px rgb(127, 214, 255);
     opacity: 0.6;
     &:hover {
       opacity: 1;

@@ -13,16 +13,14 @@ import { AppWrap, MotionWrap } from "../../wrapper";
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [filterSkills, setFilterSkills] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("Languages");
+  const [activeFilter, setActiveFilter] = useState("All");
   const [animateCard, setAnimateCard] = useState({ x: 0, opacity: 1 });
 
   useEffect(() => {
-    const skillsQuery = '*[_type == "skills"]';
+    const skillsQuery = '*[_type == "skills"] | order(progress desc)';
     client.fetch(skillsQuery).then((data) => {
       setSkills(data);
-      setFilterSkills(
-        data.filter((skill) => skill.tags.includes(activeFilter))
-      );
+      setFilterSkills(data);
     });
   }, []);
 
@@ -54,6 +52,7 @@ const Skills = () => {
               { show: "Backend", send: "Back" },
               { show: "Mobile", send: "Mobile" },
               { show: "Other Tools", send: "Tools" },
+              { show: "All", send: "All" },
             ].map((item, index) => (
               <div
                 key={index}
@@ -71,9 +70,7 @@ const Skills = () => {
             animate={animateCard}
             transition={{ duration: 0.5, delayChildren: 0.5 }}
           >
-            {filterSkills
-              .sort((a, b) => b.progress - a.progress)
-              .map((skill) => (
+            {filterSkills.map((skill) => (
                 <motion.div
                   whileInView={{ opacity: [0, 1] }}
                   transition={{ duration: 0.5 }}

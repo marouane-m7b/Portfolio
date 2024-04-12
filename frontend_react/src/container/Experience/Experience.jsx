@@ -34,8 +34,11 @@ const Experience = () => {
           {experiences.map((experience, index) => (
             <VerticalTimelineElement
               key={index}
+              contentStyle={index === 0 ? { background: "rgb(33, 150, 243)", color: "#fff" } : null}
+              contentArrowStyle={index === 0 ?{ borderRight: "7px solid  rgb(33, 150, 243)" }: null}
               className={experience.type === "education" ? "vertical-timeline-element--education" : "vertical-timeline-element--work"}
               date={experience.year}
+              dateClassName="text-black"
               iconStyle={experience.type === "education" ? { background: "rgb(233, 30, 99)", color: "#fff" } : { background: "rgb(33, 150, 243)", color: "#fff" }}
               icon={experience.type === "education" ? <PiStudentFill /> : <MdOutlineWork />}
             >
