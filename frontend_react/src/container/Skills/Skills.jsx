@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  CircularProgressbar,
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";

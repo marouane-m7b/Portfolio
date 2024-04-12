@@ -19,7 +19,7 @@ const About = () => {
   return (
     <>
       <h2 className="head-text">
-        Turning <span>ideas</span> into <span>reality</span> <br />
+        Turning <span>ideas</span> into <span>reality</span>
         through the art of programming
       </h2>
 
