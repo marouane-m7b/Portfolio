@@ -11,8 +11,8 @@ export const skillsType = defineType({
       type: 'string'
     }),
     defineField({
-      name: 'pourcentage',
-      title: 'Pourcentage',
+      name: 'progress',
+      title: 'Progress',
       type: 'number'
     }),
     defineField({
