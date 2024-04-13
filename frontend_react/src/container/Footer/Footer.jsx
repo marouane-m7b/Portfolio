@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { images } from '../../constants';
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { client } from '../../client';
-import './Footer.scss';
+import { images } from "../../constants";
+import { AppWrap, MotionWrap } from "../../wrapper";
+import { client } from "../../client";
+import "./Footer.scss";
 
 const Footer = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -17,49 +21,84 @@ const Footer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-const handleSubmit = () => {
-  setLoading(true);
+  const handleSubmit = () => {
+    setLoading(true);
 
-  const contact = {
-    _type: 'contact',
-    name: formData.name,
-    email: formData.email,
-    message: formData.message,
+    const contact = {
+      _type: "contact",
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    client
+      .create(contact)
+      .then(() => {
+        setLoading(false);
+        setIsFormSubmitted(true);
+      })
+      .catch((err) => {
+        console.error("Error submitting the form:", err.message);
+        setLoading(false);
+        // Present an error message to the user or handle insufficient permissions
+      });
   };
-
-  client.create(contact)
-    .then(() => {
-      setLoading(false);
-      setIsFormSubmitted(true);
-    })
-    .catch((err) => {
-      console.error('Error submitting the form:', err.message);
-      setLoading(false);
-      // Present an error message to the user or handle insufficient permissions
-    });
-};
 
   return (
     <>
-      <h2 className="head-text">Take a coffee <span>&</span> chat with me</h2>
+      <h2 className="head-text">
+        Take a coffee <span>&</span> chat with me
+      </h2>
 
       <div className="app__footer-cards">
         <div className="app__footer-card ">
           <img loading="lazy" src={images.email} alt="marouane mahboub email" />
-          <a href="mailto:marouane.ma7boub@gmail.com" style={{ color: "black" }} aria-label={`Send email to me`} className="p-text">marouane.ma7boub@gmail.com</a>
+          <a
+            href="mailto:marouane.ma7boub@gmail.com"
+            style={{ color: "black" }}
+            aria-label={`Send email to me`}
+            className="p-text"
+          >
+            marouane.ma7boub@gmail.com
+          </a>
         </div>
         <div className="app__footer-card">
-          <img loading="lazy" src={images.mobile} alt="marouane mahboub phone" />
-          <a href="tel:+212600000000" style={{ color: "black" }} aria-label={`Call me`} className="p-text">+212600000000</a>
+          <img
+            loading="lazy"
+            src={images.mobile}
+            alt="marouane mahboub phone"
+          />
+          <a
+            href="tel:+212600000000"
+            style={{ color: "black" }}
+            aria-label={`Call me`}
+            className="p-text"
+          >
+            +212600000000
+          </a>
         </div>
       </div>
       {!isFormSubmitted ? (
         <div className="app__footer-form app__flex">
           <div className="app__flex">
-            <input className="p-text" type="text" placeholder="Your Name" name="name" value={name} onChange={handleChangeInput} />
+            <input
+              className="p-text"
+              type="text"
+              placeholder="Your Name"
+              name="name"
+              value={name}
+              onChange={handleChangeInput}
+            />
           </div>
           <div className="app__flex">
-            <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
+            <input
+              className="p-text"
+              type="email"
+              placeholder="Your Email"
+              name="email"
+              value={email}
+              onChange={handleChangeInput}
+            />
           </div>
           <div>
             <textarea
@@ -70,21 +109,24 @@ const handleSubmit = () => {
               onChange={handleChangeInput}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
+          <button type="button" className="p-text" onClick={handleSubmit}>
+            {!loading ? "Send Message" : "Sending..."}
+          </button>
         </div>
       ) : (
         <div>
-          <h3 className="head-text">
-            Thank you for getting in touch!
-          </h3>
+          <h3 className="head-text">Thank you for getting in touch!</h3>
         </div>
       )}
+      <div className="copyright">
+        <p>&copy; 2024 Marouane Mahboub. All rights reserved.</p>
+      </div>
     </>
   );
 };
 
 export default AppWrap(
-  MotionWrap(Footer, 'app__footer'),
-  'contact',
-  'app__primarybg',
+  MotionWrap(Footer, "app__footer"),
+  "contact",
+  "app__primarybg"
 );
