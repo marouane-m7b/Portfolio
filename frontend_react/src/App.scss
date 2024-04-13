@@ -104,11 +104,18 @@
   align-items: center;
   flex-direction: column;
   position: fixed;
-  bottom: 40%;
+  bottom: 34%;
   left: 0;
   z-index: 7;
 
   padding: 1rem;
+
+  #my-tooltip {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
 
   a {
     display: block;

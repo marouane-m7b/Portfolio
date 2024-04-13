@@ -38,6 +38,8 @@ import logo from '../assets/logo.png';
 // import skype from '../assets/skype.png';
 // import spotify from '../assets/spotify.png';
 
+import cv from '../assets/marouane-mahboub-cv.pdf';
+
 const images = {
   profile,
   circle,
@@ -46,7 +48,8 @@ const images = {
   laravel,
   mysql,
   email,
-  mobile
+  mobile, 
+  cv
 };
 
 
