@@ -9,7 +9,7 @@ import { images } from "../constants";
 const SocialMediaFixed = () => (
   <div className="app__social-fixed">
     <Tooltip id="my-tooltip" />
-    <a href="https://github.com/marouane-m7b" target="_blank" aria-label="Github Link" rel="noreferrer" data-tooltip-id="my-tooltip" data-tooltip-content="Github">
+    <a href="https://github.com/marouane-m7b" target="_blank" aria-label="Github Link" rel="noreferrer" data-tooltip-id="my-tooltip" data-tooltip-content="Github Profile">
       <FiGithub />
     </a>
     <a href="https://wa.me/+212706452165" target="_blank" rel="noreferrer" aria-label="Whatsapp Link" data-tooltip-id="my-tooltip" data-tooltip-content="Whatsapp">
