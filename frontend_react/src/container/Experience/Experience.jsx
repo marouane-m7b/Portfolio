@@ -17,11 +17,11 @@ const Experience = () => {
 
   useEffect(() => {
     const experienceQuery = `*[_type == "experiences"] | order(_createdAt desc)`;
-  
+
     client.fetch(experienceQuery).then((data) => {
       setExperiences(data);
     });
-  }, []);  
+  }, []);
 
   return (
     <>
@@ -33,13 +33,46 @@ const Experience = () => {
           {experiences.map((experience, index) => (
             <VerticalTimelineElement
               key={index}
-              contentStyle={index === 0 ? { background: "var( --secondary-color)", color: "#fff" } : null}
-              contentArrowStyle={index === 0 ?{ borderRight: "7px solid  var(--secondary-color)" }: null}
-              className={experience.type === "education" ? "vertical-timeline-element--education" : "vertical-timeline-element--work"}
+              contentStyle={
+                index === 0
+                  ? {
+                      background:
+                        experience.type === "education"
+                          ? "var(--education-color)"
+                          : "var(--work-color)",
+                      color: "#fff",
+                    }
+                  : null
+              }
+              contentArrowStyle={
+                index === 0
+                  ? {
+                      borderRight:
+                        experience.type === "education"
+                          ? "7px solid var(--education-color)"
+                          : "7px solid var(--work-color)",
+                    }
+                  : null
+              }
+              className={
+                experience.type === "education"
+                  ? "vertical-timeline-element--education"
+                  : "vertical-timeline-element--work"
+              }
               date={experience.year}
-              dateClassName="text-black"
-              iconStyle={experience.type === "education" ? { background: "rgb(233, 30, 99)", color: "#fff" } : { background: "var(--secondary-color)", color: "#fff" }}
-              icon={experience.type === "education" ? <PiStudentFill /> : <MdOutlineWork />}
+              dateClassName={index === 0 ? "text-black" : ""}
+              iconStyle={
+                experience.type === "education"
+                  ? { background: "var(--education-color)", color: "#fff" }
+                  : { background: "var(--work-color)", color: "#fff" }
+              }
+              icon={
+                experience.type === "education" ? (
+                  <PiStudentFill />
+                ) : (
+                  <MdOutlineWork />
+                )
+              }
             >
               <h3 className="vertical-timeline-element-title">
                 {experience.title}
