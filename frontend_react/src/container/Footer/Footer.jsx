@@ -45,11 +45,11 @@ const handleSubmit = () => {
 
       <div className="app__footer-cards">
         <div className="app__footer-card ">
-          <img src={images.email} alt="email" />
+          <img loading="lazy" src={images.email} alt="email" />
           <a href="mailto:marouane.ma7boub@gmail.com" style={{ color: "black" }} aria-label={`Send email to me`} className="p-text">marouane.ma7boub@gmail.com</a>
         </div>
         <div className="app__footer-card">
-          <img src={images.mobile} alt="phone" />
+          <img loading="lazy" src={images.mobile} alt="phone" />
           <a href="tel:+212600000000" style={{ color: "black" }} aria-label={`Call me`} className="p-text">+212600000000</a>
         </div>
       </div>

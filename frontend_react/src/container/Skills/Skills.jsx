@@ -94,7 +94,7 @@ const Skills = () => {
                           strokeWidth={3}
                         >
                           {skill.icon ? (
-                            <img
+                            <img loading="lazy"
                               src={urlFor(skill.icon)}
                               alt={skill.name}
                               style={{ width: "50%", height: "50%" }}
