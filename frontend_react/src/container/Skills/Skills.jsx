@@ -87,7 +87,7 @@ const Skills = () => {
                           value={value}
                           styles={buildStyles({
                             pathTransitionDuration: 0.5,
-                            pathColor: `rgba(62, 152, 199, ${value})`,
+                            pathColor: `var(--secondary-color)`,
                             trailColor: "#e3e3e3",
                             backgroundColor: "#3e98c7",
                           })}
