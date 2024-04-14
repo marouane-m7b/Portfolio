@@ -8,7 +8,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { client, urlFor } from "../../client";
 import "./Skills.scss";
 import ProgressProvider from "./ProgressProvider";
-import { AppWrap, MotionWrap } from "../../wrapper";
+import { NavigationDots } from "../../components";
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
@@ -40,84 +40,96 @@ const Skills = () => {
   };
 
   return (
-    <>
-      <h2 className="head-text">Skills</h2>
+    <div id="skills" className={`app__container app__whitebg`}>
+      <div className="app__placeholder"></div>
+      <div className="app__wrapper app__flex">
+        <motion.div
+          whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
+          transition={{ duration: 0.5 }}
+          className={`app__skills app__flex`}
+        >
+          <h2 className="head-text">Skills</h2>
 
-      <div className="app__skills-container">
-        <motion.div className="app__skills-list">
-          <div className="app__work-filter app__work-filter-skills">
-            {[
-              { show: "Languages", send: "Languages" },
-              { show: "Frontend", send: "Front" },
-              { show: "Backend", send: "Back" },
-              { show: "Mobile", send: "Mobile" },
-              { show: "Other Tools", send: "Tools" },
-              { show: "All", send: "All" },
-            ].map((item, index) => (
-              <div
-                key={index}
-                onClick={() => handleWorkFilter(item.send)}
-                className={`app__work-filter-item app__flex p-text ${
-                  activeFilter === item.send ? "item-active" : ""
-                }`}
-              >
-                {item.show}
-              </div>
-            ))}
-          </div>
-          <motion.div
-            className="app__work-portfolio"
-            animate={animateCard}
-            transition={{ duration: 0.5, delayChildren: 0.5 }}
-          >
-            {filterSkills.map((skill) => (
-                <motion.div
-                  whileInView={{ opacity: [0, 1] }}
-                  transition={{ duration: 0.5 }}
-                  className="app__skills-item app__flex"
-                  key={skill.name}
-                >
+          <div className="app__skills-container">
+            <motion.div className="app__skills-list">
+              <div className="app__work-filter app__work-filter-skills">
+                {[
+                  { show: "Languages", send: "Languages" },
+                  { show: "Frontend", send: "Front" },
+                  { show: "Backend", send: "Back" },
+                  { show: "Mobile", send: "Mobile" },
+                  { show: "Other Tools", send: "Tools" },
+                  { show: "All", send: "All" },
+                ].map((item, index) => (
                   <div
-                    className="app__flex"
-                    style={{ backgroundColor: "transparent" }}
+                    key={index}
+                    onClick={() => handleWorkFilter(item.send)}
+                    className={`app__work-filter-item app__flex p-text ${
+                      activeFilter === item.send ? "item-active" : ""
+                    }`}
                   >
-                    <ProgressProvider valueStart={0} valueEnd={skill.progress}>
-                      {(value) => (
-                        <CircularProgressbarWithChildren
-                          value={value}
-                          styles={buildStyles({
-                            pathTransitionDuration: 0.5,
-                            pathColor: `var(--secondary-color)`,
-                            trailColor: "#e3e3e3",
-                            backgroundColor: "#3e98c7",
-                          })}
-                          strokeWidth={3}
-                        >
-                          {skill.icon ? (
-                            <img loading="lazy"
-                              src={urlFor(skill.icon)}
-                              alt={skill.name}
-                              style={{ width: "50%", height: "50%" }}
-                            />
-                          ) : (
-                            <p>{skill.name}</p>
-                          )}
-                        </CircularProgressbarWithChildren>
-                      )}
-                    </ProgressProvider>
+                    {item.show}
                   </div>
-                  <p className="p-text">{skill.name}</p>
-                </motion.div>
-              ))}
-          </motion.div>
+                ))}
+              </div>
+              <motion.div
+                className="app__work-portfolio"
+                animate={animateCard}
+                transition={{ duration: 0.5, delayChildren: 0.5 }}
+              >
+                {filterSkills.map((skill) => (
+                  <motion.div
+                    whileInView={{ opacity: [0, 1] }}
+                    transition={{ duration: 0.5 }}
+                    className="app__skills-item app__flex"
+                    key={skill.name}
+                  >
+                    <div
+                      className="app__flex"
+                      style={{ backgroundColor: "transparent" }}
+                    >
+                      <ProgressProvider
+                        valueStart={0}
+                        valueEnd={skill.progress}
+                      >
+                        {(value) => (
+                          <CircularProgressbarWithChildren
+                            value={value}
+                            styles={buildStyles({
+                              pathTransitionDuration: 0.5,
+                              pathColor: `var(--secondary-color)`,
+                              trailColor: "#e3e3e3",
+                              backgroundColor: "#3e98c7",
+                            })}
+                            strokeWidth={3}
+                          >
+                            {skill.icon ? (
+                              <img
+                                loading="lazy"
+                                src={urlFor(skill.icon)}
+                                alt={skill.name}
+                                style={{ width: "50%", height: "50%" }}
+                              />
+                            ) : (
+                              <p>{skill.name}</p>
+                            )}
+                          </CircularProgressbarWithChildren>
+                        )}
+                      </ProgressProvider>
+                    </div>
+                    <p className="p-text">{skill.name}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
+
+        <div className="copyright"></div>
       </div>
-    </>
+      <NavigationDots active="skills" />
+    </div>
   );
 };
 
-export default AppWrap(
-  MotionWrap(Skills, "app__skills"),
-  "skills",
-  "app__whitebg"
-);
+export default Skills;
