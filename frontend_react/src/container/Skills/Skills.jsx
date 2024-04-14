@@ -13,14 +13,16 @@ import { NavigationDots } from "../../components";
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [filterSkills, setFilterSkills] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("Languages");
   const [animateCard, setAnimateCard] = useState({ x: 0, opacity: 1 });
 
   useEffect(() => {
     const skillsQuery = '*[_type == "skills"] | order(progress desc)';
     client.fetch(skillsQuery).then((data) => {
       setSkills(data);
-      setFilterSkills(data);
+      setFilterSkills(
+        data.filter((skill) => skill.tags.includes(activeFilter))
+      );
     });
   }, []);
 

@@ -4,6 +4,9 @@ import { client } from "../../client";
 import "./Footer.scss";
 import { NavigationDots } from "../../components";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +25,30 @@ const Footer = () => {
   };
 
   const handleSubmit = () => {
+    if (!/^.+$/.test(name)) {
+      return toast("Please fill in your name", {
+        position: "bottom-left",
+        autoClose: 1000,
+      });
+    }
+    if (!/^.+$/.test(email)) {
+      return toast("Please fill in your email", {
+        position: "bottom-left",
+        autoClose: 1000,
+      });
+    }
+    if (!/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      return toast("Please enter a valid email", {
+        position: "bottom-left",
+        autoClose: 1000,
+      });
+    }
+    if (!/^.+$/.test(message)) {
+      return toast("Please fill in your message", {
+        position: "bottom-left",
+        autoClose: 1000,
+      });
+    }
     setLoading(true);
 
     const contact = {
@@ -46,6 +73,7 @@ const Footer = () => {
 
   return (
     <>
+      <ToastContainer />
       <div id="contact" className={`app__container app__primarybg`}>
         <div className="app__placeholder"></div>
         <div className="app__wrapper app__flex">
@@ -81,12 +109,12 @@ const Footer = () => {
                   alt="marouane mahboub phone"
                 />
                 <a
-                  href="tel:+212600000000"
+                  href="tel:+212706452165"
                   style={{ color: "black" }}
                   aria-label={`Call me`}
                   className="p-text"
                 >
-                  +212600000000
+                  +212706452165
                 </a>
               </div>
             </div>
