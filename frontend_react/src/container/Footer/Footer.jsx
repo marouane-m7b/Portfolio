@@ -94,12 +94,12 @@ const Footer = () => {
                   alt="marouane mahboub email"
                 />
                 <a
-                  href="mailto:marouane.ma7boub@gmail.com"
+                  href="mailto:marouane@m7b.dev"
                   style={{ color: "black" }}
                   aria-label={`Send email to me`}
                   className="p-text"
                 >
-                  marouane.ma7boub@gmail.com
+                  marouane@m7b.dev
                 </a>
               </div>
               <div className="app__footer-card">
