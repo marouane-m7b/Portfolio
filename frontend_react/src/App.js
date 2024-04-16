@@ -21,7 +21,7 @@ function App() {
         <title>Marouane Mahboub - Fullstack and Mobile Developer</title>
         <meta
           name="description"
-          content="Portfolio website of Marouane Mahboub, a fullstack and mobile developer. Explore projects, skills, and contact information."
+          content="Portfolio website of Marouane Mahboub (m7b), a fullstack and mobile developer. Explore projects, skills, and contact information."
         />
         <meta
           name="keywords"
