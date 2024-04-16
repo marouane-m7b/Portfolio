@@ -19,7 +19,11 @@ function App() {
     <div className="app">
       <Helmet>
         <title>Marouane Mahboub - Fullstack and Mobile Developer</title>
-        <meta name="title" content="Marouane Mahboub - Fullstack and Mobile Developer" />
+        <meta
+          name="title"
+          content="Marouane Mahboub - Fullstack and Mobile Developer"
+        />
+        <link rel="icon" href="./m7b.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
