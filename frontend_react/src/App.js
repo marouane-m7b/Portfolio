@@ -19,6 +19,8 @@ function App() {
     <div className="app">
       <Helmet>
         <title>Marouane Mahboub - Fullstack and Mobile Developer</title>
+        <meta name="title" content="Marouane Mahboub - Fullstack and Mobile Developer" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
           content="Portfolio website of Marouane Mahboub (m7b), a fullstack and mobile developer. Explore projects, skills, and contact information."
@@ -27,6 +29,8 @@ function App() {
           name="keywords"
           content="Marouane Mahboub, Marwane Mahboub, m7b, fullstack, m7b, fullstack developer, mobile developer, portfolio"
         />
+        <meta name="author" content="Marouane Mahboub" />
+        <link rel="canonical" href="https://www.m7b.dev" />
         <script type="application/ld+json">
           {`{
             "@context": "https://schema.org",
