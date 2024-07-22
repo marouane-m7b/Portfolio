@@ -49,6 +49,7 @@ const Work = () => {
               My Creative <span>Portfolio</span> Section
             </h2>
 
+
             <div className="app__work-filter">
               {[
                 "React Js",
@@ -62,14 +63,31 @@ const Work = () => {
                 <div
                   key={index}
                   onClick={() => handleWorkFilter(item)}
-                  className={`app__work-filter-item app__flex p-text ${
-                    activeFilter === item ? "item-active" : ""
-                  }`}
+                  className={`app__work-filter-item app__flex p-text ${activeFilter === item ? "item-active" : ""
+                    }`}
                 >
                   {item}
                 </div>
               ))}
             </div>
+
+            <div style={{
+              backgroundColor: '#f8d7da',
+              border: '1px solid #f5c6cb',
+              borderRadius: '4px',
+              padding: '10px',
+              margin: '20px 0',
+              color: '#721c24',
+              fontFamily: 'Arial, sans-serif'
+            }}>
+              <p style={{
+                margin: '0',
+                fontSize: '1em'
+              }}>
+                <strong>Important Notice:</strong> If the GitHub code or website preview is unavailable, the client requested privacy.
+              </p>
+            </div>
+
 
             <motion.div
               animate={animateCard}
