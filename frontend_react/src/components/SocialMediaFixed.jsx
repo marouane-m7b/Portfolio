@@ -18,9 +18,9 @@ const SocialMediaFixed = () => (
     <a href="https://www.youtube.com/channel/UCHJaLn_FSc-9LaYRIrzBHWQ" target="_blank" rel="noreferrer" aria-label="Youtube Link" data-tooltip-id="my-tooltip" data-tooltip-content="Youtube Channel">
       <FaYoutube />
     </a>
-    <a href="https://mostaql.com/u/marouane_m7b" target="_blank" rel="noreferrer" aria-label="Mostaql Link" data-tooltip-id="my-tooltip" data-tooltip-content="Mostaql Profile">
+    {/* <a href="https://mostaql.com/u/marouane_m7b" target="_blank" rel="noreferrer" aria-label="Mostaql Link" data-tooltip-id="my-tooltip" data-tooltip-content="Mostaql Profile">
       <FaGlobe />
-    </a>
+    </a> */}
     <a href={images.cv} download={true} target="_blank" rel="noreferrer" aria-label="Resume Link" data-tooltip-id="my-tooltip" data-tooltip-content="Download Resume">
       <FaDownload />
     </a>
