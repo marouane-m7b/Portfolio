@@ -1,6 +1,6 @@
 import React from "react";
 import { FiGithub } from "react-icons/fi";
-import { FaWhatsapp, FaYoutube } from "react-icons/fa";
+import { FaGlobe, FaLinkedin, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
 import { Tooltip } from "react-tooltip";
 import { images } from "../constants";
