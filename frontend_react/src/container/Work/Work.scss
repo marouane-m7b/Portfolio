@@ -47,10 +47,12 @@
   justify-content: center;
   align-items: stretch;
   width: 100%;
+  flex-wrap: wrap;
 
   .app__work-item {
     width: 270px;
     flex-direction: column;
+    justify-content: start;
 
     margin: 2rem;
     padding: 1rem;

@@ -115,6 +115,7 @@ const Work = () => {
                       }}
                       className="app__work-hover app__flex"
                     >
+                      {work.projectLink !== "#" ? (
                       <a
                         href={work.projectLink}
                         aria-label={`${work.title}`}
@@ -130,6 +131,9 @@ const Work = () => {
                           <AiFillEye />
                         </motion.div>
                       </a>
+                      ) : (
+                        <></>
+                      )}
                       {work.codeLink !== "#" ? (
                         <a
                           href={work.codeLink}

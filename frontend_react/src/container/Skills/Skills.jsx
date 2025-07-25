@@ -60,6 +60,7 @@ const Skills = () => {
                   { show: "Frontend", send: "Front" },
                   { show: "Backend", send: "Back" },
                   { show: "Mobile", send: "Mobile" },
+                  { show: "CMS", send: "CMS" },
                   { show: "Other Tools", send: "Tools" },
                   { show: "All", send: "All" },
                 ].map((item, index) => (

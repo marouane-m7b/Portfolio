@@ -16,7 +16,7 @@ const Experience = () => {
   const [experiences, setExperiences] = useState([]);
 
   useEffect(() => {
-    const experienceQuery = `*[_type == "experiences"] | order(_createdAt desc)`;
+    const experienceQuery = `*[_type == "experiences"] | order(_updatedAt desc)`;
 
     client.fetch(experienceQuery).then((data) => {
       setExperiences(data);
